@@ -16,9 +16,16 @@ module WhosIn
 
 		def self.tell_user_and_scan_network
 			script =  File.expand_path('../../bin/local_scanner', __FILE__)
-			pusher_url = `heroku config:get PUSHER_URL -a #{@heroku_app}`
+
+			pusher_url = `heroku config:get PUSHER_URL -a #{@heroku_app}`.strip
+            if pusher_url.empty? then
+                puts "Unable to retrieve Pusher URL for #{@heroku_app}"
+                return
+            end
+
 			puts "Scanning #{@local_interface} network interface every 2 minutes and posting to #{@heroku_url}"
 			puts "Press Ctrl+C to interrupt"
+
 			`#{script} #{@heroku_url} #{pusher_url} #{@local_network}`
 		end
 
