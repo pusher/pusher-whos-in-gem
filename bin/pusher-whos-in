@@ -45,3 +45,13 @@ command :run do |c|
     WhosIn::Application.run_app(app_name, interface)
   end
 end
+
+command :list do |c|
+  c.syntax = 'pusher-whos-in list'
+  c.summary = 'List available network interfaces to scan'
+  c.description = ''
+  c.example 'description', 'pusher-whos-in list'
+  c.action do |args, options|
+    WhosIn::Application.list_interfaces
+  end
+end
