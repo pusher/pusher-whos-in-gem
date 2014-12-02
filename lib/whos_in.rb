@@ -67,13 +67,13 @@ module WhosIn
 			self.run_script
 		end
 
-        def self.list_interfaces
+		def self.list_interfaces
 			# Get available network interfaces
 			interfaces = System.get_ifaddrs
 
-            for name, interface in interfaces do
-                puts "#{name}: #{interface[:inet_addr]}/#{interface[:netmask]}"
-            end
-        end
+			for name, interface in interfaces do
+				puts "#{name}: #{interface[:inet_addr]}/#{interface[:netmask]}"
+			end
+		end
 	end
 end
